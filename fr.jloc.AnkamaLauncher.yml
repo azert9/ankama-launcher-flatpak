@@ -1,6 +1,7 @@
 app-id: fr.jloc.AnkamaLauncher
 tags:
 - proprietary
+command: entrypoint
 runtime: org.freedesktop.Platform
 runtime-version: &runtime-version '22.08'
 sdk: org.freedesktop.Sdk
