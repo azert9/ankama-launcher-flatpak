@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Ankama Launcher
+Exec=entrypoint
+Type=Application
+Icon=fr.jloc.AnkamaLauncher
+Categories=Game;

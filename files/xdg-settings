@@ -1,0 +1,4 @@
+#!/bin/bash
+set -eu
+
+# The purpose of this script is to prevents an error when the launcher tries to install itself as an URL handler.

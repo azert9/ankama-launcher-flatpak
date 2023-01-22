@@ -1,0 +1,16 @@
+#!/bin/bash
+set -eu
+
+# Copying the binary to a writeable location to allow auto update.
+
+if ! [ -f ~/.local/bin/launcher ]
+then
+	mkdir -p ~/.local/bin
+	tmp_file=~/.local/bin/"launcher.tmp-$$"
+	cp "/app/bin/Ankama Launcher-Setup-x86_64.AppImage" "$tmp_file"
+	mv "$tmp_file" ~/.local/bin/launcher
+fi
+
+# Launching the AppImage
+
+exec ~/.local/bin/launcher --appimage-extract-and-run --no-sandbox

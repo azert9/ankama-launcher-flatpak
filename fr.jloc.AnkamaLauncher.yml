@@ -1,0 +1,68 @@
+app-id: fr.jloc.AnkamaLauncher
+tags:
+- proprietary
+runtime: org.freedesktop.Platform
+runtime-version: &runtime-version '22.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Compat.i386
+  - org.freedesktop.Sdk.Extension.toolchain-i386
+add-extensions:
+  org.freedesktop.Platform.Compat.i386:
+    directory: lib/i386-linux-gnu
+    version: *runtime-version
+finish-args:
+- --allow=multiarch
+- --socket=wayland
+- --socket=x11
+- --share=network
+- --device=dri
+- --socket=pulseaudio
+- --persist=.local
+- --persist=.config
+- --persist=.wine
+- --persist=.pki
+modules:
+- name: wine
+  buildsystem: autotools
+  build-options:  # Options taken from https://docs.flatpak.org/en/latest/multiarch.html
+    # Make sure 32-bit dependencies are first on pkg-config search path
+    prepend-pkg-config-path: /app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
+    # Add /app/lib32 to linker search path for modules without pkg-config
+    ldflags: -L/app/lib32
+    # Add the cross-compiler to PATH
+    prepend-path: /usr/lib/sdk/toolchain-i386/bin
+    # Tell the build systems to use the cross-compiler for compilation
+    env:
+      CC: i686-unknown-linux-gnu-gcc
+      CXX: i686-unknown-linux-gnu-g++
+    # Tell the build systems to install libraries to /app/lib32
+    libdir: /app/lib32
+  sources:
+  - type: archive
+    url: https://dl.winehq.org/wine/source/7.x/wine-7.22.tar.xz
+    sha256: 1f2ac3b2cdf66c49bf145b43e7a3f30e6d8176d0ae498056c903fef8a6ccfc3a
+- name: mkdir
+  buildsystem: simple
+  build-commands:
+  - mkdir -p /app/lib/i386-linux-gnu
+- name: launcher
+  buildsystem: simple
+  sources:
+  - type: file
+    path: ./files/Ankama Launcher-Setup-x86_64.AppImage
+  - type: file
+    path: ./files/entrypoint
+  - type: file
+    path: ./files/xdg-settings
+  - type: file
+    path: ./files/fr.jloc.AnkamaLauncher.desktop
+  build-commands:
+  - ./"Ankama Launcher-Setup-x86_64.AppImage" --appimage-extract 'usr/share/icons/*'
+  - mkdir -p /app/share
+  - mv ./squashfs-root/usr/share/icons /app/share/
+  - find /app/share/icons -type f -name zaap.png -execdir mv zaap.png fr.jloc.AnkamaLauncher.png \;
+  - install -Dt /app/share/applications ./fr.jloc.AnkamaLauncher.desktop
+  - install -t /app/bin ./entrypoint
+  - install -t /app/bin ./"Ankama Launcher-Setup-x86_64.AppImage"
+  - install -t /app/bin ./xdg-settings
