@@ -41,8 +41,8 @@ modules:
     libdir: /app/lib32
   sources:
   - type: archive
-    url: https://dl.winehq.org/wine/source/7.x/wine-7.22.tar.xz
-    sha256: 1f2ac3b2cdf66c49bf145b43e7a3f30e6d8176d0ae498056c903fef8a6ccfc3a
+    url: https://dl.winehq.org/wine/source/8.x/wine-8.16.tar.xz
+    sha256: 168266375eef23394a3147e84b41b4297fb80363db0a07921a5ed087a9c3f3fd
 - name: mkdir
   buildsystem: simple
   build-commands:
