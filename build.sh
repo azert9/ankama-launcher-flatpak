@@ -20,10 +20,10 @@ section 'Installing Flatpak platform and SDK'
 
 flatpak install flathub \
 	--user \
-	org.freedesktop.Platform//22.08 \
-	org.freedesktop.Sdk//22.08 \
-	org.freedesktop.Sdk.Compat.i386//22.08 \
-	org.freedesktop.Sdk.Extension.toolchain-i386//22.08
+	org.freedesktop.Platform//23.08 \
+	org.freedesktop.Sdk//23.08 \
+	org.freedesktop.Sdk.Compat.i386//23.08 \
+	org.freedesktop.Sdk.Extension.toolchain-i386//23.08
 
 
 section 'Downloading launcher binary'
