@@ -59,6 +59,7 @@ modules:
   - type: file
     path: ./files/fr.jloc.AnkamaLauncher.desktop
   build-commands:
+  - chmod +x ./"Ankama Launcher-Setup-x86_64.AppImage"
   - ./"Ankama Launcher-Setup-x86_64.AppImage" --appimage-extract 'usr/share/icons/*'
   - mkdir -p /app/share
   - mv ./squashfs-root/usr/share/icons /app/share/
