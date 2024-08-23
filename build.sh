@@ -23,7 +23,8 @@ flatpak install flathub \
 	org.freedesktop.Platform//23.08 \
 	org.freedesktop.Sdk//23.08 \
 	org.freedesktop.Sdk.Compat.i386//23.08 \
-	org.freedesktop.Sdk.Extension.toolchain-i386//23.08
+	org.freedesktop.Sdk.Extension.toolchain-i386//23.08 \
+	org.freedesktop.Sdk.Extension.mingw-w64//23.08
 
 
 section 'Downloading launcher binary'

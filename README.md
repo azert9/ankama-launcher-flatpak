@@ -5,7 +5,15 @@ It was tested with Dofus only, but might also work with other games of the launc
 
 ## Building
 
-Make sure flatpak-builder is installed, then run the build script :
+Install flatpak-builder.
+
+Make sure the flathub repository is configured in the user installation:
+
+```shell
+flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
+
+Then, run the build script:
 
 ```shell
 ./build.sh
