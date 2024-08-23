@@ -5,23 +5,19 @@ It was tested with Dofus only, but might also work with other games of the launc
 
 ## Building
 
-Dependencies:
-* flatpak-builder
-* GNU Make
+Make sure flatpak-builder is installed, then run the build script :
 
-You must also install the platform and the SDK:
-
-```bash
-flatpak install flathub \
-	org.freedesktop.Platform//22.08 \
-	org.freedesktop.Sdk//22.08 \
-	org.freedesktop.Sdk.Compat.i386//22.08 \
-	org.freedesktop.Sdk.Extension.toolchain-i386//22.08
+```shell
+./build.sh
 ```
 
-Download the Ankama Launcher from the official site, and put it in this directory as `files/Ankama Launcher-Setup-x86_64.AppImage`.
+## Installing
 
-Then, build and install the flatpak with `make install`.
+Follow the steps above to build the package, then install it :
+
+```shell
+flatpak-builder --force-clean --user --install ./build fr.jloc.AnkamaLauncher.yml
+```
 
 ## Notes
 
